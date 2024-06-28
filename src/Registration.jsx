@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import authFetch from './axiosbase/interceptors';
 
 
 const validationSchema = Yup.object().shape({
@@ -23,7 +24,7 @@ const validationSchema = Yup.object().shape({
 export default function Registration() {
     const notify = () => toast.success("Registration successful")
     const handleSubmit = (values) => {
-        axios.post(`http://localhost:8080/api/users/register`,values).then((y) => {
+        authFetch.post(`/api/users/register`,values).then((y) => {
             console.log(y.data);
             notify();
           });

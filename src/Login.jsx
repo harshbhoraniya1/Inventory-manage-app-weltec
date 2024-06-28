@@ -3,9 +3,9 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { TextField, Button, Grid, Typography } from "@mui/material";
 import * as yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import authFetch from "./axiosbase/interceptors";
 
 const validationSchema = yup.object({
   email: yup
@@ -21,8 +21,8 @@ export default function Login() {
   const notifyFail = () => toast.error("Login Failed");
 
   const handleSubmit = (values) => {
-    axios.post("http://localhost:8080/api/users/login", values).then((y) => {
-      localStorage.setItem("userInfo", JSON.stringify(y.data.token));
+    authFetch.post("/api/users/login", values).then((y) => {
+      // localStorage.setItem("userInfo", JSON.stringify(y.data.token));
       console.log(y.data);
       notify();
     }).catch(()=>{notifyFail()});
@@ -73,7 +73,6 @@ export default function Login() {
                   variant="contained"
                   color="primary"
                   fullWidth
-                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Logging in..." : "Login"}
                 </Button>
