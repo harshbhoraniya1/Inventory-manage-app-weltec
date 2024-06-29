@@ -25,6 +25,7 @@ export default function Login() {
       // localStorage.setItem("userInfo", JSON.stringify(y.data.token));
       console.log(y.data);
       notify();
+      anav('/myproduct');
     }).catch(()=>{notifyFail()});
   };
 

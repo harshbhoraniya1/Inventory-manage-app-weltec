@@ -2,22 +2,21 @@ import './App.css'
 import { Link, Route, Routes } from 'react-router-dom'
 import Registration from './Registration'
 import Login from './Login'
-import Dashbord from './Dashbord'
+import withTitle from './MyLayout'
+import ProductGrid from './product/ProductGrid'
 
 
 function App() {
 
+  const DashBoard = withTitle(ProductGrid)
+
   return (
     <>
-    <ul>
-      <li><Link to={'/registration'}>Registration</Link></li>
-      <li><Link to={'/login'}>Login</Link></li>
-      <li><Link to={'/dashboard'}>Dashboard</Link></li>
-    </ul>
+    
       <Routes>
         <Route path='/registration' element={<Registration />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/dashboard' element={<Dashbord />}/>
+        <Route path='/' element={<Login />}/>
+        <Route path='/myproduct' element={<DashBoard/>}/>
       </Routes>
     </>
   )
