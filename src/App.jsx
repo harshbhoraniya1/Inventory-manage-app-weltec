@@ -4,11 +4,14 @@ import Registration from './Registration'
 import Login from './Login'
 import withTitle from './MyLayout'
 import ProductGrid from './product/ProductGrid'
+import ProductAdd from './product/ProductAdd'
 
 
 function App() {
 
   const DashBoard = withTitle(ProductGrid)
+  const AddProduct = withTitle(ProductAdd)
+  
 
   return (
     <>
@@ -17,6 +20,7 @@ function App() {
         <Route path='/registration' element={<Registration />}/>
         <Route path='/' element={<Login />}/>
         <Route path='/myproduct' element={<DashBoard/>}/>
+        <Route path='/addproduct' element={<AddProduct/>}/>
       </Routes>
     </>
   )

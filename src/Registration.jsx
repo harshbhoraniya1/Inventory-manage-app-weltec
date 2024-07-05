@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Typography, TextField, Button, Grid } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import authFetch from './axiosbase/interceptors';
 
