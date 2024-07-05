@@ -16,8 +16,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import { Link } from "react-router-dom";
@@ -70,7 +68,12 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  
 }));
+const listStyle3 = {
+  background: '#fafa00',
+  backgroundColor: 'red'
+}
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -90,19 +93,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const withTitle = (Component) => {
-  // const DashBoardnav = useNavigate('/myproduct');
-  // const listOfItem = [
-  // {
-  //   icon: <DashboardTwoToneIcon />,
-  //   label: 'Dashboard',
-  //   to: '/myproduct',
-  // },
-  // {
-  //   icon: <AddShoppingCartTwoToneIcon />,
-  //   label: 'Product',
-  //   to: '/addproduct',
-  // }
-  // ]
 
   return (props) => {
     const theme = useTheme();
@@ -119,7 +109,7 @@ const withTitle = (Component) => {
     return (
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} style={listStyle3}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -138,6 +128,8 @@ const withTitle = (Component) => {
             </Typography>
           </Toolbar>
         </AppBar>
+
+
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
