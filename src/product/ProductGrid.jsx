@@ -3,6 +3,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect } from "react";
 import { useState } from "react";
 import authFetch from "../axiosbase/interceptors";
+import CardUse from "../carddis/CardUse";
+import { Box } from "@mui/material";
 
 const columns = [
   { field: "id", headerName: "ID", width: 230  },
@@ -39,6 +41,10 @@ export default function ProductGrid() {
     });
   }, []);
   return (
+    <>
+    {/* {console.log(data)} */}
+    <CardUse data={data}/>
+    
     <div style={{ height: 400,  width: "100%" }}>
       <DataGrid
         rows={data}
@@ -52,5 +58,6 @@ export default function ProductGrid() {
         checkboxSelection
       />
     </div>
+    </>
   );
 }

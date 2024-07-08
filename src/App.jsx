@@ -4,12 +4,14 @@ import Login from './Login'
 import withTitle from './MyLayout'
 import ProductGrid from './product/ProductGrid'
 import ProductAdd from './product/ProductAdd'
+import ProfileGrid from './profile/ProfileGrid'
 
 
 function App() {
 
   const DashBoard = withTitle(ProductGrid)
   const AddProduct = withTitle(ProductAdd)
+  const Profile = withTitle(ProfileGrid)
   
 
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path='/' element={<Login />}/>
         <Route path='/myproduct' element={<DashBoard/>}/>
         <Route path='/addproduct' element={<AddProduct/>}/>
+        <Route path='/myprofile' element={<Profile/>}/>
       </Routes>
     </>
   )

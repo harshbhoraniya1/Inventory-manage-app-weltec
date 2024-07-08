@@ -18,7 +18,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
+import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import { Link } from "react-router-dom";
+
 
 const drawerWidth = 240;
 
@@ -128,8 +130,6 @@ const withTitle = (Component) => {
             </Typography>
           </Toolbar>
         </AppBar>
-
-
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
@@ -142,6 +142,8 @@ const withTitle = (Component) => {
           </DrawerHeader>
           <Divider />
           <List>
+
+          {/* item 1 */}
             <ListItem
               key={"DashBoard"}
               disablePadding
@@ -171,6 +173,8 @@ const withTitle = (Component) => {
                 </ListItemButton>
               </Link>
             </ListItem>
+
+            {/* item 2 */}
             <ListItem
               key={"AddProduct"}
               disablePadding
@@ -200,6 +204,38 @@ const withTitle = (Component) => {
                 </ListItemButton>
               </Link>
             </ListItem>
+
+            {/* item 3 */}
+            <ListItem
+              key={"Profile"}
+              disablePadding
+              sx={{ display: "block" }}
+            >
+              <Link to={"/myprofile"}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <AccountBoxTwoToneIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Profile"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+
           </List>
           <Divider />
           
