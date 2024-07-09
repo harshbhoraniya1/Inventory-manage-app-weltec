@@ -57,10 +57,9 @@ export default function EditProductForm() {
     const aNav = useNavigate()
   const notify = () => toast.success("Registration successful");
   const handleSubmit = (values) => {
-    authFetch.post("/api/products/", values).then((y) => {
-      console.log(y.data);
-    });
+    
     console.log(values);
+    aNav('/myproduct')
   };
   return (
     <>
@@ -123,7 +122,7 @@ export default function EditProductForm() {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Button type="submit" variant="contained" color="primary" onClick={()=>{aNav('/myproduct')}}>
+                  <Button type="submit" variant="contained" color="primary" >
                     Edit Product
                   </Button>
                 </Grid>
