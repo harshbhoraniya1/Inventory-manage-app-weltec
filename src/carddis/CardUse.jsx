@@ -8,33 +8,12 @@ import ProductionQuantityLimitsOutlinedIcon from "@mui/icons-material/Production
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
 // import { red } from "@mui/material/colors";
 
-const CartIcon = styled(ShoppingCartOutlinedIcon)(({}) => ({
-  fontSize: 50,
-  fontWeight: 1000,
-  margin: 0,
-  backgroundColor: "inherit",
-}));
 
-const MoneyIcon = styled(MonetizationOnOutlinedIcon)(({}) => ({
-  fontSize: 50,
-  fontWeight: 1000,
-  margin: 0,
-  backgroundColor: "inherit",
-}));
 
-const OutOfStockIcon = styled(ProductionQuantityLimitsOutlinedIcon)(({}) => ({
+const cardIconStyle = {
   fontSize: 50,
   fontWeight: 1000,
-  margin: 0,
-  backgroundColor: "inherit",
-}));
-
-const CategoriesIcon = styled(WidgetsOutlinedIcon)(({}) => ({
-  fontSize: 50,
-  fontWeight: 1000,
-  margin: 0,
-  backgroundColor: "inherit",
-}));
+};
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -43,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "inherit",
   color: "#fff",
   cursor: "pointer",
-  fontSize: 30,
+  fontSize: 20,
   boxShadow: "none",
   margin: 0,
   pl: 0,
@@ -82,11 +61,11 @@ export default function CardUse({ data }) {
         <Card key={index} style={{ ...style, minWidth: '275px', borderRadius: '10px', cursor: 'pointer', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)' }}>
           <CardContent>
             <Grid container spacing={6}>
-              <Grid item xs={2}>
-                {index === 0 && <CartIcon />}
-                {index === 1 && <MoneyIcon />}
-                {index === 2 && <OutOfStockIcon />}
-                {index === 3 && <CategoriesIcon />}
+              <Grid item xs={2} style={cardIconStyle}>
+                {index === 0 && <ShoppingCartOutlinedIcon />}
+                {index === 1 && <MonetizationOnOutlinedIcon />}
+                {index === 2 && <ProductionQuantityLimitsOutlinedIcon />}
+                {index === 3 && <WidgetsOutlinedIcon />}
               </Grid>
               <Grid item xs={10}>
                 <Item>
