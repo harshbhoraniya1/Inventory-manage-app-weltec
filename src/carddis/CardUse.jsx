@@ -12,7 +12,6 @@ const CartIcon = styled(ShoppingCartOutlinedIcon)(({}) => ({
   fontSize: 50,
   fontWeight: 1000,
   margin: 0,
-  // pl: 3,
   backgroundColor: "inherit",
 }));
 
@@ -20,7 +19,6 @@ const MoneyIcon = styled(MonetizationOnOutlinedIcon)(({}) => ({
   fontSize: 50,
   fontWeight: 1000,
   margin: 0,
-  // pl: 3,
   backgroundColor: "inherit",
 }));
 
@@ -28,7 +26,6 @@ const OutOfStockIcon = styled(ProductionQuantityLimitsOutlinedIcon)(({}) => ({
   fontSize: 50,
   fontWeight: 1000,
   margin: 0,
-  // pl: 3,
   backgroundColor: "inherit",
 }));
 
@@ -36,22 +33,16 @@ const CategoriesIcon = styled(WidgetsOutlinedIcon)(({}) => ({
   fontSize: 50,
   fontWeight: 1000,
   margin: 0,
-  // pl: 3,
   backgroundColor: "inherit",
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
-  // padding: theme.spacing(1),
   textAlign: "right",
   backgroundColor: "inherit",
-
   color: "#fff",
   cursor: "pointer",
-  // "&:hover": {
-  //   backgroundColor: theme.palette.mode === "dark" ? "#212121" : "#f5f5f5",
-  // },
   fontSize: 30,
   boxShadow: "none",
   margin: 0,
@@ -65,91 +56,51 @@ const cardContainerStyle = {
   padding: "10px",
 };
 
-const card1Style = {
-  // minWidth: '275px',
-  // height: '250px',
-  // flex: "1 1 auto",
-  backgroundColor: "#b624ff", // Color for card 1
-  color: "#fff",
-};
+const cardStyles = [
+  {
+    backgroundColor: "#b624ff",
+    color: "#fff",
+  },
+  {
+    backgroundColor: "#32963d",
+    color: "#fff",
+  },
+  {
+    backgroundColor: "#c41849",
+    color: "#fff",
+  },
+  {
+    backgroundColor: "#03a5fc",
+    color: "#fff",
+  },
+];
 
-const card2Style = {
-  // minWidth: '275px',
-  backgroundColor: "#32963d", // Color for card 2
-  color: "#fff",
-};
-const card3Style = {
-  // minWidth: '275px',
-  backgroundColor: "#c41849", // Color for card 2
-  color: "#fff",
-};
-const card4Style = {
-  // minWidth: '275px',
-  backgroundColor: "#03a5fc", // Color for card 2
-  color: "#fff",
-};
-export default function CardUse(data) {
+export default function CardUse({ data }) {
   return (
     <div style={cardContainerStyle}>
-      {/* {console.log(data.data.length)} */}
-
-      <Card style={card1Style}>
-        <CardContent>
-          <Grid container spacing={6}>
-            <Grid item xs={2}>
-              <CartIcon />
+      {cardStyles.map((style, index) => (
+        <Card key={index} style={{ ...style, minWidth: '275px', borderRadius: '10px', cursor: 'pointer', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)' }}>
+          <CardContent>
+            <Grid container spacing={6}>
+              <Grid item xs={2}>
+                {index === 0 && <CartIcon />}
+                {index === 1 && <MoneyIcon />}
+                {index === 2 && <OutOfStockIcon />}
+                {index === 3 && <CategoriesIcon />}
+              </Grid>
+              <Grid item xs={10}>
+                <Item>
+                  {index === 0 && "Total Products"}
+                  {index === 1 && "Total Store Value"}
+                  {index === 2 && "Out of Stock"}
+                  {index === 3 && "All Categories"}
+                </Item>
+                <Item>8</Item> {/* Example data usage */}
+              </Grid>
             </Grid>
-            <Grid item xs={10}>
-              <Item>Total Products</Item>
-              <Item>{data.data.length}</Item>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-
-      <Card style={card2Style}>
-        <CardContent>
-          <Grid container spacing={6}>
-            <Grid item xs={2}>
-              <MoneyIcon />
-            </Grid>
-            <Grid item xs={10}>
-              <Item>Total Store Value</Item>
-              <Item>8</Item>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-
-      <Card style={card3Style}>
-        <CardContent>
-          <Grid container spacing={6}>
-            <Grid item xs={2}>
-              <OutOfStockIcon />
-            </Grid>
-            <Grid item xs={10}>
-              <Item>Out of Stock</Item>
-              <Item>8</Item>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-
-      <Card style={card4Style}>
-        <CardContent>
-          <Grid container spacing={6}>
-            <Grid item xs={2}>
-              <Item>
-                <CategoriesIcon />
-              </Item>
-            </Grid>
-            <Grid item xs={10}>
-              <Item>All Categories</Item>
-              <Item>8</Item>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
