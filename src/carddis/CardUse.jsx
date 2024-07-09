@@ -7,7 +7,6 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 import ProductionQuantityLimitsOutlinedIcon from "@mui/icons-material/ProductionQuantityLimitsOutlined";
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
 
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -52,10 +51,19 @@ export default function CardUse({ data }) {
   return (
     <div style={cardContainerStyle}>
       {cardStyles.map((style, index) => (
-        <Card key={index} style={{ ...style, minWidth: '275px', borderRadius: '10px', cursor: 'pointer', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)' }}>
+        <Card
+          key={index}
+          style={{
+            ...style,
+            minWidth: "275px",
+            borderRadius: "10px",
+            cursor: "pointer",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+          }}
+        >
           <CardContent>
             <Grid container spacing={6}>
-              <Grid item xs={2} >
+              <Grid item xs={2}>
                 {index === 0 && <ShoppingCartOutlinedIcon />}
                 {index === 1 && <MonetizationOnOutlinedIcon />}
                 {index === 2 && <ProductionQuantityLimitsOutlinedIcon />}
@@ -68,7 +76,13 @@ export default function CardUse({ data }) {
                   {index === 2 && "Out of Stock"}
                   {index === 3 && "All Categories"}
                 </Item>
-                <Item>8</Item> {/* Example data usage */}
+                <Item>
+                  {index === 0 && data.length}
+                  {index === 1 && 3}
+                  {index === 2 && 4}
+                  {index === 3 && 5}
+                </Item>{" "}
+                {/* Example data usage */}
               </Grid>
             </Grid>
           </CardContent>

@@ -5,6 +5,7 @@ import withTitle from './MyLayout'
 import ProductGrid from './product/ProductGrid'
 import ProductAdd from './product/ProductAdd'
 import ProfileGrid from './profile/ProfileGrid'
+import EditProductForm from './editForm/EditProductForm'
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const DashBoard = withTitle(ProductGrid)
   const AddProduct = withTitle(ProductAdd)
   const Profile = withTitle(ProfileGrid)
+  const EditProduct = withTitle(EditProductForm)
   
 
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path='/myproduct' element={<DashBoard/>}/>
         <Route path='/addproduct' element={<AddProduct/>}/>
         <Route path='/myprofile' element={<Profile/>}/>
+        <Route path='/editProduct' element={<EditProduct/>}/>
       </Routes>
     </>
   )
