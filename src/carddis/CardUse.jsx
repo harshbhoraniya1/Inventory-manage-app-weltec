@@ -3,9 +3,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Grid, Paper, styled } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
-import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined';
+import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import ProductionQuantityLimitsOutlinedIcon from "@mui/icons-material/ProductionQuantityLimitsOutlined";
+import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
 import { red } from "@mui/material/colors";
 
 const CartIcon = styled(ShoppingCartOutlinedIcon)(({}) => ({
@@ -47,7 +47,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "right",
   backgroundColor: "inherit",
 
-  color: '#fff',
+  color: "#fff",
   cursor: "pointer",
   // "&:hover": {
   //   backgroundColor: theme.palette.mode === "dark" ? "#212121" : "#f5f5f5",
@@ -58,43 +58,41 @@ const Item = styled(Paper)(({ theme }) => ({
   pl: 0,
 }));
 
-
 const cardContainerStyle = {
   display: "flex",
-  flexWrap: "wrap", 
+  flexWrap: "wrap",
   gap: "16px",
   padding: "10px",
 };
-
 
 const card1Style = {
   // minWidth: '275px',
   // height: '250px',
   // flex: "1 1 auto",
-  backgroundColor: '#b624ff', // Color for card 1
-  color: '#fff',
+  backgroundColor: "#b624ff", // Color for card 1
+  color: "#fff",
 };
 
 const card2Style = {
   // minWidth: '275px',
-  backgroundColor: '#32963d', // Color for card 2
-  color: '#fff',
+  backgroundColor: "#32963d", // Color for card 2
+  color: "#fff",
 };
 const card3Style = {
   // minWidth: '275px',
-  backgroundColor: '#c41849', // Color for card 2
-  color: '#fff',
+  backgroundColor: "#c41849", // Color for card 2
+  color: "#fff",
 };
 const card4Style = {
   // minWidth: '275px',
-  backgroundColor: '#03a5fc', // Color for card 2
-  color: '#fff',
-    };
+  backgroundColor: "#03a5fc", // Color for card 2
+  color: "#fff",
+};
 export default function CardUse(data) {
   return (
     <div style={cardContainerStyle}>
-    {/* {console.log(data.data.length)} */}
-    
+      {/* {console.log(data.data.length)} */}
+
       <Card style={card1Style}>
         <CardContent>
           <Grid container spacing={6}>
@@ -113,7 +111,7 @@ export default function CardUse(data) {
         <CardContent>
           <Grid container spacing={6}>
             <Grid item xs={2}>
-                <MoneyIcon />
+              <MoneyIcon />
             </Grid>
             <Grid item xs={10}>
               <Item>Total Store Value</Item>
@@ -127,11 +125,11 @@ export default function CardUse(data) {
         <CardContent>
           <Grid container spacing={6}>
             <Grid item xs={2}>
-                <OutOfStockIcon />
+              <OutOfStockIcon />
             </Grid>
             <Grid item xs={10}>
               <Item>Out of Stock</Item>
-              <Item >8</Item>
+              <Item>8</Item>
             </Grid>
           </Grid>
         </CardContent>
@@ -147,7 +145,7 @@ export default function CardUse(data) {
             </Grid>
             <Grid item xs={10}>
               <Item>All Categories</Item>
-              <Item >8</Item>
+              <Item>8</Item>
             </Grid>
           </Grid>
         </CardContent>
