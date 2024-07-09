@@ -29,6 +29,11 @@ export default function Login() {
     }).catch(()=>{notifyFail()});
   };
 
+  const margi = {
+    margin: "auto",
+    width: "50%", 
+  }
+
   return (
     <>
       <Formik
@@ -38,7 +43,7 @@ export default function Login() {
       >
         {({ isSubmitting }) => (
           <Form>
-            <Grid container spacing={2} justifyContent="center">
+            <Grid container spacing={2} justifyContent="center"  style={margi}>
               <Grid item xs={12}>
                 <Typography variant="h4" align="center" gutterBottom>
                   Login
