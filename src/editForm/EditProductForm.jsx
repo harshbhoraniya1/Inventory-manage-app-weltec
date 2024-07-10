@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Typography, TextField, Button, Grid } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
-import authFetch from "../axiosbase/interceptors";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +58,7 @@ export default function EditProductForm() {
   const handleSubmit = (values) => {
     
     console.log(values);
-    aNav('/myproduct')
+    // aNav('/myproduct')
   };
   return (
     <>

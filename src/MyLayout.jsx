@@ -20,6 +20,7 @@ import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import { Link } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 
 const drawerWidth = 240;
@@ -109,7 +110,7 @@ const withTitle = (Component) => {
     };
 
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box container sx={{ display: "flex" }} >
         <CssBaseline />
         <AppBar position="fixed" open={open} style={listStyle3}>
           <Toolbar>

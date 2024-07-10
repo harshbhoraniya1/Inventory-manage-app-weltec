@@ -12,54 +12,55 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate } from "react-router-dom";
 
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
 export default function ProductGrid() {
+
+
   const [data, setData] = useState([]);
   const [id, setId] = useState();
+  const aNav = useNavigate();
+  const [open, setOpen] = useState(false);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = (event,params) => {
-    setOpen(true)
-    setId(params.row.id)
-    // console.log(params.row.id)
-    // console.log(id)
 
+  const handleOpen = (event, params) => {
+    setOpen(true);
+    setId(params.row.id);
   };
-  const handleDelete = (event, params) => {
+  const handleDelete = async () => {
     authFetch.delete(`/api/products/${id}`).then((y) => {
       console.log(y);
     });
-    handleClose();
+    await handleClose();
+    await setId();
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   }
 
-  const handleClose = () => setOpen(false);
-
-
-  const aNav = useNavigate();
   useEffect(() => {
-    authFetch.get("/api/products").then((y) => {
+     authFetch.get("/api/products").then((y) => {
       setData(
         y.data.map((p) => {
           return { ...p, id: p._id };
         })
       );
     });
-  }, []);
+  }, [open]);
 
   const handleEdit = (event, params) => {
     console.log(params.row.id);
@@ -113,7 +114,7 @@ export default function ProductGrid() {
               size="small"
               color="secondary"
               aria-label="edit"
-              onClick={(event)=>{
+              onClick={(event) => {
                 handleOpen(event, params);
               }}
             >
@@ -153,25 +154,24 @@ export default function ProductGrid() {
       </div>
 
       <div>
-      
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h4" component="h2">
-          Delete Product
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Are you sure you want to delete this product.
-          </Typography>
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={handleClose}>Cancel</button>
-        </Box>
-      </Modal>
-    </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
+              Delete Product
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Are you sure you want to delete this product.
+            </Typography>
+            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleClose}>Cancel</button>
+          </Box>
+        </Modal>
+      </div>
     </>
   );
 }
