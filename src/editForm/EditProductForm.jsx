@@ -1,19 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Typography, TextField, Button, Grid } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, useFormik } from "formik";
 import { toast } from "react-toastify";
+import authFetch from "../axiosbase/interceptors";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate } from "react-router-dom";
-
-
-const initialValues = {
-  name: "",
-  category: "",
-  price: "",
-  quantity: "",
-  description: "",
-};
+import { useNavigate, useParams } from "react-router-dom";
 
 const modules = {
   toolbar: [
@@ -53,29 +45,44 @@ const formats = [
 ];
 
 export default function EditProductForm() {
-    const aNav = useNavigate()
-  const notify = () => toast.success("Registration successful");
+  const { id } = useParams();
   const handleSubmit = (values) => {
-    
     console.log(values);
-    // aNav('/myproduct')
   };
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      category: "",
+      price: "",
+      quantity: "",
+      description: "",
+    },
+    onSubmit: { handleSubmit },
+  });
+  useEffect(() => {
+    authFetch.get(`/api/products/${id}`).then((y) => {
+      console.log(y.data);
+      formik.setValues({
+        ...y.data,
+      });
+    });
+  }, []);
+
   return (
     <>
       <Container maxWidth="sm">
         <Typography variant="h4" gutterBottom>
           Edit Product
         </Typography>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
-        >
+        <Formik>
           {({ values, setFieldValue }) => (
             <Form>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
+                    value={formik.values.name}
                     name="name"
                     label="Product Name:"
                     fullWidth
@@ -84,6 +91,7 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
+                    value={formik.values.category}
                     name="category"
                     label="Product Category:"
                     fullWidth
@@ -92,6 +100,7 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
+                    value={formik.values.price}
                     name="price"
                     label="Product Price:"
                     fullWidth
@@ -100,20 +109,18 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
+                    value={formik.values.quantity}
                     name="quantity"
                     label="Product Quantity:"
                     fullWidth
                   />
                 </Grid>
                 <Grid item xs={12}>
-                
                   <ReactQuill
                     label="Product Description:"
                     theme="snow"
-                    value={values.description}
-                    onChange={(value) =>
-                      setFieldValue("description", value)
-                    }
+                    value={formik.values.description}
+                    onChange={(value) => setFieldValue("description", value)}
                     modules={modules}
                     formats={formats}
                     placeholder="Product Description:"
@@ -121,7 +128,7 @@ export default function EditProductForm() {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Button type="submit" variant="contained" color="primary" >
+                  <Button type="submit" variant="contained" color="primary">
                     Edit Product
                   </Button>
                 </Grid>

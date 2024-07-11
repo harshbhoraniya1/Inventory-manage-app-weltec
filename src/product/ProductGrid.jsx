@@ -63,8 +63,9 @@ export default function ProductGrid() {
   }, [open]);
 
   const handleEdit = (event, params) => {
-    console.log(params.row.id);
+    // console.log(params.row.id);
     setId(params.row.id);
+    aNav(`/editProduct/${params.row.id}`);
   };
 
   const columns = [
@@ -105,7 +106,7 @@ export default function ProductGrid() {
                 sx={{ fontSize: 20 }}
                 onClick={(event) => {
                   handleEdit(event, params);
-                  aNav("/editProduct");
+                  
                 }}
               />
             </Fab>

@@ -119,17 +119,7 @@ export default function ProductAdd() {
                     // helperText={touched.password && errors.password}
                   />
                 </Grid>
-                {/* <Grid item xs={12}>
-            <Field
-              as={TextField}
-              name="description"
-              label="Product Description:" 
-              type="textarea"
-              fullWidth
-              // error={touched.password && !!errors.password}
-              // helperText={touched.password && errors.password}
-            />
-          </Grid> */}
+                
                 <Grid item xs={12}>
                 
                   <ReactQuill

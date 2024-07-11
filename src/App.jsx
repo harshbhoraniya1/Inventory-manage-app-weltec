@@ -25,7 +25,7 @@ function App() {
         <Route path='/myproduct' element={<DashBoard/>}/>
         <Route path='/addproduct' element={<AddProduct/>}/>
         <Route path='/myprofile' element={<Profile/>}/>
-        <Route path='/editProduct' element={<EditProduct/>}/>
+        <Route path='/editProduct/:id' element={<EditProduct/>}/>
       </Routes>
     </>
   )
