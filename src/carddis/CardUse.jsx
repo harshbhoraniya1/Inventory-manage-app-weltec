@@ -48,6 +48,11 @@ const cardStyles = [
 ];
 
 export default function CardUse({ data }) {
+
+  const storeValue = data.reduce((pre,cur)=>{
+    return pre + (cur.price*cur.quantity);
+  },0);
+
   return (
     <div style={cardContainerStyle}>
       {cardStyles.map((style, index) => (
@@ -78,7 +83,7 @@ export default function CardUse({ data }) {
                 </Item>
                 <Item>
                   {index === 0 && data.length}
-                  {index === 1 && 3}
+                  {index === 1 && storeValue}
                   {index === 2 && 4}
                   {index === 3 && 5}
                 </Item>{" "}

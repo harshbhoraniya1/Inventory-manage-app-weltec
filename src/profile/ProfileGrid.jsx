@@ -25,9 +25,9 @@ export default function ProfileGrid() {
    boxShadow: "rgb(201 201 201 / 50%) 20px 20px 20px 0px",
    border: "1px solid rgb(0 0 0)",
    borderRadius: "10px",
-   margin: "20px",
+   margin: "auto",
    padding: '15px',
-   background: "#cccccc", 
+   backgroundColor: "rgba(0, 0, 0, 0.1)"
   }
   const btn = {
      borderRadius: "5px",
@@ -40,7 +40,7 @@ export default function ProfileGrid() {
 
   return (
     <>
-      <Card sx={{ maxWidth: 450 }} style={shodowss}>
+      <Card sx={{ maxWidth: 500 }} style={shodowss}>
         <CardMedia
           sx={{ height: 140 }}
           image="/static/images/cards/contemplative-reptile.jpg"

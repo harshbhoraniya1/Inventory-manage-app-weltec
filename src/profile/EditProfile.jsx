@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Container, Typography, TextField, Button, Grid, TextareaAutosize } from "@mui/material";
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  TextareaAutosize,
+  Divider,
+} from "@mui/material";
 import { Formik, Form, Field, useFormik } from "formik";
 import { toast } from "react-toastify";
 import authFetch from "../axiosbase/interceptors";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
-
 
 export default function EditProfile() {
   const { id } = useParams();
@@ -20,11 +27,11 @@ export default function EditProfile() {
   });
   const handleSubmit = (values) => {
     console.log(values);
-    authFetch.patch(`/api/users/updateuser`,values).then((y)=>{
+    authFetch.patch(`/api/users/updateuser`, values).then((y) => {
       console.log(y);
       toast.success("User updated successfully");
-      aNav('/myprofile')
-    })
+      aNav("/myprofile");
+    });
   };
 
   useEffect(() => {
@@ -35,54 +42,57 @@ export default function EditProfile() {
         name: y.data.name,
         phone: y.data.phone,
         photo: y.data.photo,
-        bio:'',
+        bio: "",
       });
     });
   }, []);
 
+  const backStyle = {
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+    padding: "30px",
+    borderRadius: "5px",
+    marginBottom: "10px",
+  };
+
   return (
     <>
-    <Container maxWidth="sm">
-      <Typography variant="h4" gutterBottom>
-        Edit Profile
-      </Typography>
-      <Formik initialValues={data} enableReinitialize={true} onSubmit={handleSubmit}>
+      <Container maxWidth="sm" style={backStyle}>
+        <Typography variant="h4" gutterBottom>
+          Edit Profile
+        </Typography>
+        <Formik
+          initialValues={data}
+          enableReinitialize={true}
+          onSubmit={handleSubmit}
+        >
           <Form>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Field
-                  as={TextField}
-                  name="name"
-                  label="Name:"
-                  fullWidth
-                />
+                <Field as={TextField} name="name" label="Name:" fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <Field
-                  as={TextField}
-                  name="email"
-                  label="Email:"
-                  fullWidth
-                />
-              </Grid>
-              
-              <Grid item xs={12}>
-                <Field
-                  as={TextField}
-                  name="phone"
-                  label="Phone:"
-                  fullWidth
-                />
+                <Divider />
               </Grid>
               <Grid item xs={12}>
-                <Field
-                  as={TextField}
-                  name="bio"
-                  label="Bio:"
-                  fullWidth
-                />
+                <Field as={TextField} name="email" fullWidth disabled />
+                <Typography>Email cannot be changed.</Typography>
               </Grid>
-              
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Field as={TextField} name="phone" label="Phone:" fullWidth />
+              </Grid>
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
+              <Grid item xs={12}>
+                <Field as={TextField} name="bio" label="Bio:" fullWidth />
+              </Grid>
+              <Grid item xs={12}>
+                <Divider />
+              </Grid>
 
               <Grid item xs={12}>
                 <Button type="submit" variant="contained" color="primary">
@@ -91,8 +101,8 @@ export default function EditProfile() {
               </Grid>
             </Grid>
           </Form>
-      </Formik>
-    </Container>
-  </>
-  )
+        </Formik>
+      </Container>
+    </>
+  );
 }

@@ -84,7 +84,7 @@ export default function EditProductForm() {
           Edit Product
         </Typography>
         <Formik initialValues={data} enableReinitialize={true} onSubmit={handleSubmit}>
-          {({  setFieldValue }) => (
+          {({  values, setFieldValue }) => (
             <Form>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -124,6 +124,7 @@ export default function EditProductForm() {
                     label="Product Description:"
                     name='description'
                     theme="snow"
+                    value={values.description}
                     onChange={(value) => setFieldValue("description", value)}
                     modules={modules}
                     formats={formats}

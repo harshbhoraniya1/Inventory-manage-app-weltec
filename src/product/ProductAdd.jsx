@@ -56,6 +56,12 @@ const formats = [
   "color",
   "background",
 ];
+const backStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.05)",
+  padding: "30px",
+  borderRadius: "5px",
+  marginBottom: "10px",
+};
 
 export default function ProductAdd() {
   const notify = () => toast.success("Registration successful");
@@ -67,7 +73,7 @@ export default function ProductAdd() {
   };
   return (
     <>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" style={backStyle}>
         <Typography variant="h4" gutterBottom>
           Add Product
         </Typography>
