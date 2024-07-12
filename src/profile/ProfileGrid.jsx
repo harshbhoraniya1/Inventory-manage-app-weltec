@@ -9,9 +9,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import authFetch from "../axiosbase/interceptors";
 import { Divider, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileGrid() {
   const [profil, setProfil] = useState([]);
+  const anav = useNavigate()
 
   useEffect(() => {
     authFetch.get("/api/users/getuser").then((y) => {
@@ -20,8 +22,20 @@ export default function ProfileGrid() {
   }, []);
 
   const shodowss = {
-   boxShadow: "rgb(255 0 0 / 33%) 20px 20px 20px 0px",
-   border: "2px solid rgb(255 0 0)",
+   boxShadow: "rgb(201 201 201 / 50%) 20px 20px 20px 0px",
+   border: "1px solid rgb(0 0 0)",
+   borderRadius: "10px",
+   margin: "20px",
+   padding: '15px',
+   background: "#cccccc", 
+  }
+  const btn = {
+     borderRadius: "5px",
+     padding: "5px 10px",
+     backgroundColor: "#2196f3",
+     color: "#ffffff",
+     fontWeight: "bold",
+     
   }
 
   return (
@@ -93,7 +107,7 @@ export default function ProfileGrid() {
           
         </CardContent>
         <CardActions>
-          <Button size="medium">Edit Profile</Button>
+          <Button size="medium" style={btn} onClick={()=>{anav('/editProfile')}}>Edit Profile</Button>
           
         </CardActions>
       </Card>

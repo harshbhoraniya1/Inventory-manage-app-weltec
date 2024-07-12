@@ -19,6 +19,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
+import PersonAddTwoToneIcon from '@mui/icons-material/PersonAddTwoTone';
 import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
 
@@ -231,6 +232,37 @@ const withTitle = (Component) => {
                   </ListItemIcon>
                   <ListItemText
                     primary="Profile"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+
+            {/* item 4 */}
+            <ListItem
+              key={"Edit Profile"}
+              disablePadding
+              sx={{ display: "block" }}
+            >
+              <Link to={"/editProfile"}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <PersonAddTwoToneIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Edit Profile"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>

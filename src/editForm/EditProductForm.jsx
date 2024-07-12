@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Typography, TextField, Button, Grid } from "@mui/material";
 import { Formik, Form, Field, useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -46,25 +46,33 @@ const formats = [
 
 export default function EditProductForm() {
   const { id } = useParams();
+  const aNav = useNavigate();
+
+  const [data, setData] = useState({
+    name: "",
+    category: "",
+    price: "",
+    quantity: "",
+    description: "",
+  });
   const handleSubmit = (values) => {
     console.log(values);
+    authFetch.patch(`/api/products/${id}`,values).then((y)=>{
+      console.log(y);
+      toast.success("Product updated successfully");
+      aNav('/myproduct')
+    })
   };
 
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      category: "",
-      price: "",
-      quantity: "",
-      description: "",
-    },
-    onSubmit: { handleSubmit },
-  });
   useEffect(() => {
     authFetch.get(`/api/products/${id}`).then((y) => {
       console.log(y.data);
-      formik.setValues({
-        ...y.data,
+      setData({
+        name: y.data.name,
+        category: y.data.category,
+        price: y.data.price,
+        quantity: y.data.quantity,
+        description: y.data.description,
       });
     });
   }, []);
@@ -75,14 +83,13 @@ export default function EditProductForm() {
         <Typography variant="h4" gutterBottom>
           Edit Product
         </Typography>
-        <Formik>
-          {({ values, setFieldValue }) => (
+        <Formik initialValues={data} enableReinitialize={true} onSubmit={handleSubmit}>
+          {({  setFieldValue }) => (
             <Form>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
-                    value={formik.values.name}
                     name="name"
                     label="Product Name:"
                     fullWidth
@@ -91,7 +98,6 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
-                    value={formik.values.category}
                     name="category"
                     label="Product Category:"
                     fullWidth
@@ -100,7 +106,6 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
-                    value={formik.values.price}
                     name="price"
                     label="Product Price:"
                     fullWidth
@@ -109,7 +114,6 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
-                    value={formik.values.quantity}
                     name="quantity"
                     label="Product Quantity:"
                     fullWidth
@@ -118,8 +122,8 @@ export default function EditProductForm() {
                 <Grid item xs={12}>
                   <ReactQuill
                     label="Product Description:"
+                    name='description'
                     theme="snow"
-                    value={formik.values.description}
                     onChange={(value) => setFieldValue("description", value)}
                     modules={modules}
                     formats={formats}
