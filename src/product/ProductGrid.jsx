@@ -68,6 +68,11 @@ export default function ProductGrid() {
     aNav(`/editProduct/${params.row.id}`);
   };
 
+  const handleView = (event, params) => {
+   
+    aNav(`/viewProduct/${params.row.id}`);
+  };
+
   const columns = [
     { field: "id", headerName: "ID", width: 230 },
     { field: "name", headerName: "Name", width: 200 },
@@ -125,10 +130,15 @@ export default function ProductGrid() {
             <Fab
               style={{ backgroundColor: "purple", color: "#fff" }}
               size="small"
-              disabled
+              color="primary"
               aria-label="like"
             >
-              <VisibilityIcon sx={{ fontSize: 20 }} />
+              <VisibilityIcon 
+              sx={{ fontSize: 20 }} 
+                onClick={(event)=>{
+                  handleView(event, params);
+                }}
+              />
             </Fab>
           </Box>
         );

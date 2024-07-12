@@ -7,6 +7,7 @@ import ProductAdd from './product/ProductAdd'
 import ProfileGrid from './profile/ProfileGrid'
 import EditProductForm from './editForm/EditProductForm'
 import EditProfile from './profile/EditProfile'
+import ProductDetail from './view/ProductDetail'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const Profile = withTitle(ProfileGrid)
   const EditProduct = withTitle(EditProductForm)
   const EditAdminPeofile = withTitle(EditProfile)
+  const ViewProduct = withTitle(ProductDetail)
   
 
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route path='/addproduct' element={<AddProduct/>}/>
         <Route path='/myprofile' element={<Profile/>}/>
         <Route path='/editProduct/:id' element={<EditProduct/>}/>
+        <Route path='/viewProduct/:id' element={<ViewProduct/>}/>
         <Route path='/editProfile' element={<EditAdminPeofile/>}/>
       </Routes>
     </>
