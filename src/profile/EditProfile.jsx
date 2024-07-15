@@ -18,10 +18,11 @@ const shodowss = {
   boxShadow: "rgb(201 201 201 / 50%) 20px 20px 20px 0px",
   border: "1px solid rgb(0 0 0)",
   borderRadius: "10px",
-  padding: '15px',
+  padding: "15px",
   backgroundColor: "rgba(0, 0, 0, 0.1)",
-  maxWidth: 300
- }
+  maxWidth: 300,
+};
+
 
 export default function EditProfile() {
   const { id } = useParams();
@@ -41,6 +42,18 @@ export default function EditProfile() {
       toast.success("User updated successfully");
       aNav("/myprofile");
     });
+  };
+
+  const handlePasswordChange = (values) => {
+    if (values.password != values.confirmPassword) {
+      toast.error('New Password and Confirm Password must be the same')
+    }
+    else if (values.password === values.confirmPassword) {
+      authFetch.patch('/api/users/changepassword',values).then((y)=>{
+        toast.success('Password changed successfully')
+        aNav('/myprofile')
+      })
+    }
   };
 
   useEffect(() => {
@@ -112,7 +125,64 @@ export default function EditProfile() {
           </Form>
         </Formik>
       </Container>
-      
+      <Grid sx={{maxWidth: 400, border: 2, borderColor: 'error.main', borderRadius: '16px', p: 2}}>
+        <Formik
+          initialValues={{ oldPassword: "", password: "" }}
+          onSubmit={handlePasswordChange}
+        >
+          <Form>
+            <Grid item xs={12}>
+              <Typography variant="h4" align="center" gutterBottom>
+                Change Password
+              </Typography>
+            </Grid>
+            <Grid sx={{pb: 1}}>
+              <Field
+                as={TextField}
+                name="oldPassword"
+                type="password"
+                label="Old Password"
+                variant="outlined"
+                fullWidth
+                // error={false}
+                helperText=""
+              />
+            </Grid>
+            <Grid sx={{pb: 1}}>
+              <Field
+                as={TextField}
+                name="password"
+                type="password"
+                label="New Password"
+                variant="outlined"
+                fullWidth
+                helperText=""
+              />
+            </Grid>
+            <Grid sx={{pb: 1}}>
+              <Field
+                as={TextField}
+                name="confirmPassword"
+                type="password"
+                label="Confirm New Password"
+                variant="outlined"
+                fullWidth
+                helperText=""
+              />
+            </Grid>
+            <Grid  >
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                Change Password
+              </Button>
+            </Grid>
+          </Form>
+        </Formik>
+      </Grid>
     </>
   );
 }
