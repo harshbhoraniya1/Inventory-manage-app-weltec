@@ -125,6 +125,8 @@ export default function EditProfile() {
           </Form>
         </Formik>
       </Container>
+
+      
       <Grid sx={{maxWidth: 400, border: 2, borderColor: 'error.main', borderRadius: '16px', p: 2}}>
         <Formik
           initialValues={{ oldPassword: "", password: "" }}
