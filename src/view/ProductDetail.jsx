@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import authFetch from "../axiosbase/interceptors";
-import { Divider, Grid, Typography } from "@mui/material";
+import { Divider, Grid, styled, Typography } from "@mui/material";
 
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
+const OutOfStock = styled('span')(({ theme }) => ({
+  fontSize: 22,
+  color: "#ef5350"
+}));
+const InStock = styled('span')(({ theme }) => ({
+  fontSize: 22,
+  color: "#4caf50"
+}));
 export default function ProductDetail() {
   const { id } = useParams();
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -17,27 +24,28 @@ export default function ProductDetail() {
   }, []);
 
   return (
-    <Grid sx={{ maxWidth: 500, border: 1, borderRadius: 2, p: 2, m: 'auto'}}>
+    <Grid sx={{ maxWidth: 500, border: 1, borderRadius: 2, p: 2, m: "auto" }}>
       <div>
         <Typography variant="h2" component="h2">
           Product Detail
         </Typography>
       </div>
       <div>
-        <Typography variant="h5" component="h5">
-          Product Availability:
+        <Grid sx={{ display: "flex" }}>
+          <Typography variant="h5" component="h5">
+            Product Availability:
+          </Typography>
           <Typography
             fontSize={21}
-            sx={{ color: "success.main" }}
             variant="body1"
             component="body1"
           >
-            In Stock
+            {data.quantity < 1 ? <OutOfStock>Out of stock</OutOfStock> : <InStock>In stock</InStock>}
           </Typography>
-        </Typography>
-        <Divider sx={{my:1}}/>
+        </Grid>
+        <Divider sx={{ my: 1 }} />
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             variant="body1"
             component="body1"
@@ -57,14 +65,14 @@ export default function ProductDetail() {
           </Typography>
         </Grid>
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             variant="body1"
             component="body1"
             fontSize={18}
             sx={{ fontWeight: "bold" }}
           >
-            <ArrowForwardRoundedIcon sx={{fontSize: 'medium'}}/> SKU:
+            <ArrowForwardRoundedIcon sx={{ fontSize: "medium" }} /> SKU:
           </Typography>
           <Typography
             fontSize={17}
@@ -76,14 +84,14 @@ export default function ProductDetail() {
           </Typography>
         </Grid>
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             variant="body1"
             component="body1"
             fontSize={18}
             sx={{ fontWeight: "bold" }}
           >
-            <ArrowForwardRoundedIcon sx={{fontSize: 'medium'}}/> Category:
+            <ArrowForwardRoundedIcon sx={{ fontSize: "medium" }} /> Category:
           </Typography>
           <Typography
             fontSize={17}
@@ -91,18 +99,18 @@ export default function ProductDetail() {
             component="body1"
             sx={{ fontWeight: 100 }}
           >
-            {data.category }
+            {data.category}
           </Typography>
         </Grid>
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             variant="body1"
             component="body1"
             fontSize={18}
             sx={{ fontWeight: "bold" }}
           >
-            <ArrowForwardRoundedIcon sx={{fontSize: 'medium'}}/> Price:
+            <ArrowForwardRoundedIcon sx={{ fontSize: "medium" }} /> Price:
           </Typography>
           <Typography
             fontSize={17}
@@ -114,14 +122,15 @@ export default function ProductDetail() {
           </Typography>
         </Grid>
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             variant="body1"
             component="body1"
             fontSize={18}
             sx={{ fontWeight: "bold" }}
           >
-            <ArrowForwardRoundedIcon sx={{fontSize: 'medium'}}/> Quantity in stock:
+            <ArrowForwardRoundedIcon sx={{ fontSize: "medium" }} /> Quantity in
+            stock:
           </Typography>
           <Typography
             fontSize={17}
@@ -133,14 +142,15 @@ export default function ProductDetail() {
           </Typography>
         </Grid>
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             variant="body1"
             component="body1"
             fontSize={18}
             sx={{ fontWeight: "bold" }}
           >
-            <ArrowForwardRoundedIcon sx={{fontSize: 'medium'}}/> Total Value in stock:
+            <ArrowForwardRoundedIcon sx={{ fontSize: "medium" }} /> Total Value
+            in stock:
           </Typography>
           <Typography
             fontSize={17}
@@ -148,13 +158,13 @@ export default function ProductDetail() {
             component="body1"
             sx={{ fontWeight: 100 }}
           >
-            {(data.price*data.quantity)}
+            {data.price * data.quantity}
           </Typography>
         </Grid>
 
-        <Divider sx={{my:1}}/>
+        <Divider sx={{ my: 1 }} />
 
-        <Grid sx={{mt: '1px'}}>
+        <Grid sx={{ mt: "1px" }}>
           <Typography
             fontSize={17}
             variant="body1"
@@ -165,14 +175,10 @@ export default function ProductDetail() {
           </Typography>
         </Grid>
 
-        <Divider sx={{my:1}}/>
-        
+        <Divider sx={{ my: 1 }} />
+
         <Grid>
-          <Typography
-            variant="body1"
-            component="body1"
-            fontSize={12}
-          >
+          <Typography variant="body1" component="body1" fontSize={12}>
             Created on:
           </Typography>
           <Typography

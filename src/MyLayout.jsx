@@ -21,6 +21,7 @@ import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTo
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import PersonAddTwoToneIcon from '@mui/icons-material/PersonAddTwoTone';
 import { Link } from "react-router-dom";
+import ContactPhoneTwoToneIcon from '@mui/icons-material/ContactPhoneTwoTone';
 
 
 const drawerWidth = 240;
@@ -262,6 +263,37 @@ const withTitle = (Component) => {
                   </ListItemIcon>
                   <ListItemText
                     primary="Edit Profile"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+
+             {/* item 5 */}
+             <ListItem
+              key={"Contact Us"}
+              disablePadding
+              sx={{ display: "block" }}
+            >
+              <Link to={"/contact-us"}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <ContactPhoneTwoToneIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Contact Us"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>

@@ -150,7 +150,7 @@ export default function ProductGrid() {
       {/* {console.log(data)} */}
       <CardUse data={data} />
 
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: 400, maxWidth: "100%" }}>
         <DataGrid
           rows={data}
           columns={columns}
@@ -160,7 +160,7 @@ export default function ProductGrid() {
             },
           }}
           pageSizeOptions={[5, 10]}
-          checkboxSelection
+          // checkboxSelection
         />
       </div>
 

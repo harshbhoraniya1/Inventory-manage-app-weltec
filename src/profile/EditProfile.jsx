@@ -14,6 +14,15 @@ import authFetch from "../axiosbase/interceptors";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
 
+const shodowss = {
+  boxShadow: "rgb(201 201 201 / 50%) 20px 20px 20px 0px",
+  border: "1px solid rgb(0 0 0)",
+  borderRadius: "10px",
+  padding: '15px',
+  backgroundColor: "rgba(0, 0, 0, 0.1)",
+  maxWidth: 300
+ }
+
 export default function EditProfile() {
   const { id } = useParams();
   const aNav = useNavigate();
@@ -36,7 +45,7 @@ export default function EditProfile() {
 
   useEffect(() => {
     authFetch.get(`/api/users/getuser`).then((y) => {
-      console.log(y.data);
+      // console.log(y.data);
       setData({
         email: y.data.email,
         name: y.data.name,
@@ -94,7 +103,7 @@ export default function EditProfile() {
                 <Divider />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={12} sx={{ textAlign: "center" }}>
                 <Button type="submit" variant="contained" color="primary">
                   Edit Profile
                 </Button>
@@ -103,6 +112,7 @@ export default function EditProfile() {
           </Form>
         </Formik>
       </Container>
+      
     </>
   );
 }

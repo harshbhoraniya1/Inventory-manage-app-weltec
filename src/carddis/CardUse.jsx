@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Grid, Paper, styled } from "@mui/material";
@@ -48,10 +48,20 @@ const cardStyles = [
 ];
 
 export default function CardUse({ data }) {
-
-  const storeValue = data.reduce((pre,cur)=>{
-    return pre + (cur.price*cur.quantity);
-  },0);
+  const storeValue = data.reduce((pre, cur) => {
+    return pre + cur.price * cur.quantity;
+  }, 0);
+  const Stock = data.filter((e) => {
+    if (e.quantity < 1) {
+      return e;
+    }
+  });
+  const Categories = data.reduce((pre, cur) => {
+    if (pre.includes(cur.category) == false) {
+      pre.push(cur.category);
+    }
+    return pre;
+  }, []);
 
   return (
     <div style={cardContainerStyle}>
@@ -84,8 +94,8 @@ export default function CardUse({ data }) {
                 <Item>
                   {index === 0 && data.length}
                   {index === 1 && storeValue}
-                  {index === 2 && 4}
-                  {index === 3 && 5}
+                  {index === 2 && Stock.length}
+                  {index === 3 && Categories.length}
                 </Item>{" "}
                 {/* Example data usage */}
               </Grid>
